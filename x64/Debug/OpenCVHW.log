@@ -1,0 +1,27 @@
+﻿  video_contour.cpp
+C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
+C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
+C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(104,79): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(104,57): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(149,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(151,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(155,84): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(155,61): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+  OpenCVHW.vcxproj -> C:\Users\demo\source\repos\OpenCVHW\x64\Debug\OpenCVHW.exe
