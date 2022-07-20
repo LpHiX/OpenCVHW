@@ -2,8 +2,8 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <iostream>
-
 #include "cameralibrary.h"
+
 using namespace CameraLibrary;
 using namespace std;
 using namespace cv;
