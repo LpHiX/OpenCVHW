@@ -253,42 +253,23 @@ int main()
 	// Initializing WinSock
 
 	WSAData data;
-	WORD ver = MAKEWORD(2, 2);
-	int wsResult = WSAStartup(ver, &data);
-	if (wsResult != 0)
+	WORD version = MAKEWORD(2, 2);
+	int wsOk = WSAStartup(version, &data);
+	if (wsOk != 0)
 	{
-		cerr << "Can't start Winsock, Err #" << wsResult << endl;
+		cout << "Can't start Winsock! " << wsOk;
 		return 0;
 	}
 
-	// Create Socket
-	SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-	if (sock == INVALID_SOCKET)
-	{
-		cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
-		WSACleanup();
-		return 0;
-	}
+	sockaddr_in server;
+	server.sin_family = AF_INET; // AF_INET = IPv4 addresses
+	server.sin_port = htons(54000); // Little to big endian conversion
+	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr); // Convert from string to byte array
 
-	// Fill in a hint structure
-	sockaddr_in hint;
-	hint.sin_family = AF_INET;
-	hint.sin_port = htons(port);
-	inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
-
-	// uhh
-
-	int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
-	if (connResult == SOCKET_ERROR)
-	{
-		cerr << "Can't connect to server, Err #" << WSAGetLastError() << " Starting offline mode" << endl;
-		online = false;
-		closesocket(sock);
-		WSACleanup();
-	}
+	// Socket creation, note that the socket type is datagram
+	SOCKET out = socket(AF_INET, SOCK_DGRAM, 0);
 
 	// Do-while loop to send and recieve data
-	char buf[4096];
 	string pos_string;
 	int64 tick;
 
@@ -368,17 +349,10 @@ int main()
 		if (online)
 		{
 			pos_string = "POS_DATA " + to_string(pos_out.x) + " " + to_string(pos_out.y) + " " + to_string(pos_out.z) + " -----------------------------";
-			int sendResult = send(sock, pos_string.c_str(), pos_string.size() + 1, 0);
-			if (sendResult != SOCKET_ERROR)
+			int sendOk = sendto(out, pos_string.c_str(), pos_string.size() + 1, 0, (sockaddr*)&server, sizeof(server));
+			if (sendOk == SOCKET_ERROR)
 			{
-				// Wait for response
-				ZeroMemory(buf, 4096);
-				int bytesRecieved = recv(sock, buf, 4096, 0);
-				if (bytesRecieved > 0)
-				{
-					// Echo response to 
-					//cout << "SERVER> " << string(buf, 0, bytesRecieved) << endl;
-				}
+				cout << "Error in sending position data! " << WSAGetLastError() << endl;
 			}
 		}
 		char key = (char)cv::waitKey(1);
@@ -390,7 +364,7 @@ int main()
 	{
 		camera->Release();
 	}
-	closesocket(sock);
+	closesocket(out);
 	WSACleanup();
 	CameraManager::X().Shutdown();
 	return 0;
