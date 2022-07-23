@@ -53,10 +53,10 @@ void main()
 
 	// Simulate user input
 		
-	userInput = "123 123 123 ";
+	userInput = "POS_DATA 123 123 123 ";
 
 	// Send the text
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		if (userInput.size() > 0)
 		{

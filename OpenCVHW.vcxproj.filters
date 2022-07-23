@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="networktest.cpp">
+    <ClCompile Include="video_contour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

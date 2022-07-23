@@ -113,7 +113,7 @@ void callBackFunc(int event, int x, int y, int flags, void* userdata)
 		if (button.contains(Point(x, y)))
 		{
 			rectangle(canvas, button, Scalar(0, 0, 255), 2);
-			cout << "pos_scale(" << pos_scale.x << ", " << pos_scale.y << ", " << pos_scale.z << "), pos_offset("<< pos_offset.x << ", " << pos_offset.y <<", " << pos_offset.z << ");" << endl;
+			cout << "pos_scale(" << pos_scale.x << ", " << pos_scale.y << ", " << pos_scale.z << "), pos_offset(" << pos_offset.x << ", " << pos_offset.y << ", " << pos_offset.z << ");" << endl;
 		}
 		else if (button_calzero.contains(Point(x, y)))
 		{
@@ -188,7 +188,7 @@ int main()
 		cout << camera->MinimumIntensity() << endl;
 		cout << camera->MinimumExposureValue() << endl;
 		cout << camera->MinimumThreshold() << endl;
-		
+
 		//camera->SetTextOverlay(true);
 
 		camera->Start();
@@ -286,7 +286,7 @@ int main()
 		closesocket(sock);
 		WSACleanup();
 	}
-	
+
 	// Do-while loop to send and recieve data
 	char buf[4096];
 	string pos_string;
@@ -304,11 +304,11 @@ int main()
 			}
 
 			frame->Rasterize(cameraWidth, cameraHeight, cameraWidth, 8, imageBuffer);
-			img = Mat(cameraHeight, cameraWidth, CV_8UC1, &imageBuffer);
+			img_raw = Mat(cameraHeight, cameraWidth, CV_8UC1, &imageBuffer);
 			frame->Release();
 
 			Rect crop_rect(0, crop_value, round(cameraWidth), round(cameraHeight) - crop_value);
-			img = img(crop_rect);
+			img_raw = img_raw(crop_rect);
 		}
 		else
 		{
@@ -320,7 +320,7 @@ int main()
 			}
 			cvtColor(raw_img, img, COLOR_BGR2GRAY);
 		}
-		inRange(img, lum_thresh_value, 255, img);
+		inRange(img_raw, lum_thresh_value, 255, img);
 		findContours(img, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 		size_t max_int = 0;
 		for (size_t i = 0; i < contours.size(); i++)
@@ -352,23 +352,22 @@ int main()
 
 			pos_out = pos_out.x * pos_out.x + pos_out.y * pos_out.y + pos_out.z * pos_out.z < 100000000 ? pos_out : Vector3(0, 0, 0);
 		}
-		/*
+		
 		int divider = 3;
 		resize(img, img, Size(round(img.cols / divider), round(img.rows / divider)), INTER_NEAREST);
 		resize(img_raw, img_raw, Size(round(img_raw.cols / divider), round(img_raw.rows / divider)), INTER_NEAREST);
 		cvtColor(img_raw, img_out, COLOR_GRAY2RGB);
-		
+
 		putText(img_out, to_string(pos_out.x), Point2f(10, 150), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(200, 255, 0), 1, LINE_8, false);
 		putText(img_out, to_string(pos_out.y), Point2f(10, 170), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(200, 255, 0), 1, LINE_8, false);
 		putText(img_out, to_string(pos_out.z), Point2f(10, 190), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(200, 255, 0), 1, LINE_8, false);
 		circle(img_out, center / divider, radius / divider, Scalar(0, 255, 0), 1);
-
-		imshow("Input", img_out);*/
+		imshow("Input", img_out);
 		imshow("Output", img);
 
 		if (online)
 		{
-			pos_string = to_string(pos_out.x) + " " + to_string(pos_out.y) + " " + to_string(pos_out.z) + " ";
+			pos_string = "POS_DATA " + to_string(pos_out.x) + " " + to_string(pos_out.y) + " " + to_string(pos_out.z) + " -----------------------------";
 			int sendResult = send(sock, pos_string.c_str(), pos_string.size() + 1, 0);
 			if (sendResult != SOCKET_ERROR)
 			{
@@ -389,10 +388,10 @@ int main()
 	cout << "Closing down" << endl;
 	if (live_camera)
 	{
-		closesocket(sock);
-		WSACleanup();
+		camera->Release();
 	}
-	camera->Release();
+	closesocket(sock);
+	WSACleanup();
 	CameraManager::X().Shutdown();
 	return 0;
 }
