@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tinyosc.cpp" />
     <ClCompile Include="video_contour.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tinyosc.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

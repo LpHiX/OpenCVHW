@@ -6,13 +6,13 @@
 #include <WS2tcpip.h>
 #include <Windows.h>
 #pragma comment(lib, "ws2_32.lib")
+#include "tinyosc.h"
 
 using namespace CameraLibrary;
 using namespace std;
 using namespace cv;
 
-string ipAddress = "127.0.0.1";
-int port = 54000;
+
 bool online = true;
 bool live_camera = true;
 
@@ -263,12 +263,12 @@ int main()
 
 	sockaddr_in server;
 	server.sin_family = AF_INET; // AF_INET = IPv4 addresses
-	server.sin_port = htons(54000); // Little to big endian conversion
-	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr); // Convert from string to byte array
+	server.sin_port = htons(54321); // Little to big endian conversion
+	inet_pton(AF_INET, "169.254.186.171", &server.sin_addr); // Convert from string to byte array
 
 	// Socket creation, note that the socket type is datagram
 	SOCKET out = socket(AF_INET, SOCK_DGRAM, 0);
-
+	char buffer[1024];
 	// Do-while loop to send and recieve data
 	string pos_string;
 	int64 tick;
@@ -348,8 +348,16 @@ int main()
 
 		if (online)
 		{
-			pos_string = "POS_DATA " + to_string(pos_out.x) + " " + to_string(pos_out.y) + " " + to_string(pos_out.z) + " -----------------------------";
-			int sendOk = sendto(out, pos_string.c_str(), pos_string.size() + 1, 0, (sockaddr*)&server, sizeof(server));
+			pos_string = "POS_DATA " + to_string(pos_out.x) + " " + to_string(pos_out.y) + " " + to_string(pos_out.z);
+			cout << pos_string << endl;
+			int len = tosc_writeMessage(
+				buffer, sizeof(buffer),
+				"/ping", // the address
+				"fsi",   // the format; 'f':32-bit float, 's':ascii string, 'i':32-bit integer
+				1.0f, pos_string.c_str(), 2);
+
+			// send the data out of the socket
+			int sendOk = sendto(out, buffer, len + 1, 0, (sockaddr*)&server, sizeof(server));
 			if (sendOk == SOCKET_ERROR)
 			{
 				cout << "Error in sending position data! " << WSAGetLastError() << endl;

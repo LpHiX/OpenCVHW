@@ -95,10 +95,11 @@ C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(339,38): warning 
               _Tp=int
           ]
 C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(345,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(352,109): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  8 of 252 functions ( 3.2%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  2 of 256 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
+tinyosc.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'tinyosc.obj' or at 'C:\Users\demo\source\repos\OpenCVHW\x64\Release\vc142.pdb'; linking object as if no debug info
+MSVCRT.lib(delete_scalar.obj) : warning LNK4020: a type record in 'c:\users\demo\source\repos\opencvhw\opencvhw\x64\release\vc142.pdb' is corrupted; some symbols and types may not be accessible from the debugger
   OpenCVHW.vcxproj -> C:\Users\demo\source\repos\OpenCVHW\x64\Release\OpenCVHW.exe
