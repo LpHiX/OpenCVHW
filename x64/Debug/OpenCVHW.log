@@ -1,89 +1,122 @@
-﻿  video_contour.cpp
+﻿  tinyosc.cpp
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(203,30): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(208,39): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(219,27): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(228,23): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(236,23): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(244,23): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(252,23): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(261,23): warning C4018: '>': signed/unsigned mismatch
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\tinyosc.cpp(271,27): warning C4018: '>=': signed/unsigned mismatch
+  video_contour.cpp
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(79,49): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(79,97): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(222,76): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(80,46): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(80,85): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,76): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(222,54): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,54): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(223,84): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(227,84): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(223,62): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(227,62): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(224,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(228,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(224,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(228,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(225,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(229,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(225,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(229,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(230,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(230,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(316,50): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,74): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(316,30): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,39): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(318,73): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(318,38): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(349,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(355,92): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(324,84): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
           with
           [
               _Tp=float
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(355,65): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(324,61): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
           with
           [
               _Tp=float
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(375,76): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  OpenCVHW.vcxproj -> C:\Users\demo\source\repos\OpenCVHW\x64\Debug\OpenCVHW.exe
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(338,57): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(338,30): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(339,69): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(339,38): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(345,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+video_contour.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::copyTo(class cv::debug_build_guard::_OutputArray const &)const " (?copyTo@Mat@cv@@QEBAXAEBV_OutputArray@debug_build_guard@2@@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::convertTo(class cv::debug_build_guard::_OutputArray const &,int,double,double)const " (?convertTo@Mat@cv@@QEBAXAEBV_OutputArray@debug_build_guard@2@HNN@Z) referenced in function "public: class cv::Mat_<unsigned char> & __cdecl cv::Mat_<unsigned char>::operator=(class cv::Mat &&)" (??4?$Mat_@E@cv@@QEAAAEAV01@$$QEAVMat@1@@Z)
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::inRange(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &)" (?inRange@cv@@YAXAEBV_InputArray@debug_build_guard@1@00AEBV_OutputArray@31@@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "public: virtual bool __cdecl cv::VideoCapture::read(class cv::debug_build_guard::_OutputArray const &)" (?read@VideoCapture@cv@@UEAA_NAEBV_OutputArray@debug_build_guard@2@@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::debug_build_guard::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@debug_build_guard@1@@Z) referenced in function "void __cdecl callBackFunc(int,int,int,int,void *)" (?callBackFunc@@YAXHHHHPEAX@Z)
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::resize(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,class cv::Size_<int>,double,double,int)" (?resize@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@V?$Size_@H@1@NNH@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::cvtColor(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,int,int)" (?cvtColor@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@HH@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::findContours(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,class cv::debug_build_guard::_OutputArray const &,int,int,class cv::Point_<int>)" (?findContours@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@1HHV?$Point_@H@1@@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "double __cdecl cv::contourArea(class cv::debug_build_guard::_InputArray const &,bool)" (?contourArea@cv@@YANAEBV_InputArray@debug_build_guard@1@_N@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::minEnclosingCircle(class cv::debug_build_guard::_InputArray const &,class cv::Point_<float> &,float &)" (?minEnclosingCircle@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEAV?$Point_@M@1@AEAM@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::rectangle(class cv::debug_build_guard::_InputOutputArray const &,class cv::Rect_<int>,class cv::Scalar_<double> const &,int,int,int)" (?rectangle@cv@@YAXAEBV_InputOutputArray@debug_build_guard@1@V?$Rect_@H@1@AEBV?$Scalar_@N@1@HHH@Z) referenced in function "void __cdecl callBackFunc(int,int,int,int,void *)" (?callBackFunc@@YAXHHHHPEAX@Z)
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::circle(class cv::debug_build_guard::_InputOutputArray const &,class cv::Point_<int>,int,class cv::Scalar_<double> const &,int,int,int)" (?circle@cv@@YAXAEBV_InputOutputArray@debug_build_guard@1@V?$Point_@H@1@HAEBV?$Scalar_@N@1@HHH@Z) referenced in function main
+video_contour.obj : error LNK2019: unresolved external symbol "void __cdecl cv::putText(class cv::debug_build_guard::_InputOutputArray const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::Point_<int>,int,double,class cv::Scalar_<double>,int,int,bool)" (?putText@cv@@YAXAEBV_InputOutputArray@debug_build_guard@1@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$Point_@H@1@HNV?$Scalar_@N@1@HH_N@Z) referenced in function main
+C:\Users\demo\source\repos\OpenCVHW\x64\Debug\OpenCVHW.exe : fatal error LNK1120: 13 unresolved externals

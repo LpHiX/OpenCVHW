@@ -2,104 +2,39 @@
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
 C:\Users\demo\Desktop\balltrack\opencv\build\include\opencv2\core.hpp(1746,1): warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(80,46): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(80,85): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,76): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(76,44): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(76,85): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(77,42): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(77,78): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(77,115): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(77,152): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(78,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,61): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(226,54): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,34): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(227,84): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(292,73): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(227,62): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(292,42): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(228,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(228,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(229,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(229,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(230,81): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(230,59): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,74): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(291,39): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(324,84): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=float
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(324,61): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=float
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(338,57): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(338,30): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(339,69): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(339,38): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(345,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(305,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\demo\source\repos\OpenCVHW\OpenCVHW\video_contour.cpp(313,109): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  2 of 256 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  35 of 271 functions (12.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    5 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 tinyosc.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'tinyosc.obj' or at 'C:\Users\demo\source\repos\OpenCVHW\x64\Release\vc142.pdb'; linking object as if no debug info
-MSVCRT.lib(delete_scalar.obj) : warning LNK4020: a type record in 'c:\users\demo\source\repos\opencvhw\opencvhw\x64\release\vc142.pdb' is corrupted; some symbols and types may not be accessible from the debugger
   OpenCVHW.vcxproj -> C:\Users\demo\source\repos\OpenCVHW\x64\Release\OpenCVHW.exe
