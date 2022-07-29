@@ -72,13 +72,13 @@ std::ostream& operator<<(std::ostream& stream, const Vector3& other)
 	return stream;
 }
 
-Vector3 pos_raw, pos_centered, pos_rotated, pos_out;
-Vector3 pos_offset(313.33, 321.968, 2090.76), pos_scale(0.814982, 0.824074, 0.178267);
-Vector3 rawpos_0(313.33, 321.968, 2090.76), rawpos_x(436.032, 320.33, 2090.76), rawpos_y(313.338, 201.041, 2100.85), rawpos_z(316.463, 324.976, 1529.82);
-float x_angle = 3.13623;
+Vector3 pos_screen, pos_raw, pos_centered, pos_rotated, pos_out;
+Vector3 pos_scale(0.820362, -0.812471, 1.04461);
+Vector3 rawpos_0(-11.1041, 89.4835, -272.449), rawpos_x(110.793, 87.5331, -264.538), rawpos_y(-24.691, -33.5978, -273.05), rawpos_z(-6.04241, 89.1021, -176.719);
+float x_angle = -0.00398436;
 
 
-int lum_thresh_value = 30;
+int lum_thresh_value = 90;
 const int lum_thresh_max = 255;
 int cal_value = 100;
 const int cal_max = 3000;
@@ -107,15 +107,19 @@ std::vector<cv::Vec4i> hierarchy;
 const int cameraWidth = 2048;
 const int cameraHeight = 1088;
 char imageBuffer[cameraWidth * cameraHeight];
+char buffer[1024];
 
 static void on_lumthresh(int value, void*) { lum_thresh_value = value; }
 static void on_calvalue(int value, void*) { cal_value = value; }
 static void on_cropvalue(int value, void*) { crop_value = value; }
-void recal_xaxis()
+void recal_calibration()
 {
-	x_angle = atan2f((rawpos_z - pos_offset).y, (rawpos_z - pos_offset).z);
-	pos_scale.y = cal_value / (rawpos_y - pos_offset).Magnitude();
-	pos_scale.z = cal_value / (rawpos_z - pos_offset).Magnitude();
+	x_angle = atan2f((rawpos_z - rawpos_0).y, (rawpos_z - rawpos_0).z);
+	pos_scale.x = cal_value / (rawpos_x-rawpos_0).x;
+	pos_scale.y = cal_value / (rawpos_y-rawpos_0).y;
+	pos_scale.z = cal_value / (rawpos_z-rawpos_0).z;
+	/*pos_scale.y = cal_value / (rawpos_y - pos_offset).Magnitude();
+	pos_scale.z = cal_value / (rawpos_z - pos_offset).Magnitude();*/
 }
 void mouseClickFunc(int event, int x, int y, int flags, void* userdata)
 {
@@ -125,32 +129,31 @@ void mouseClickFunc(int event, int x, int y, int flags, void* userdata)
 		{
 			rectangle(canvas, cal_0, cv::Scalar(0, 255, 0), 2);
 			rawpos_0 = pos_raw;
-			pos_offset = pos_raw;
 		}
 		if (cal_x.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_x, cv::Scalar(0, 255, 0), 2);
 			rawpos_x = pos_raw;
-			pos_scale.x = cal_value / pos_centered.x;
+			recal_calibration();
 		}
 		if (cal_y.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_y, cv::Scalar(0, 255, 0), 2);
 			rawpos_y = pos_raw;
-			recal_xaxis();
+			recal_calibration();
 			
 		}
 		if (cal_z.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_z, cv::Scalar(0, 255, 0), 2);
 			rawpos_z = pos_raw;
-			recal_xaxis();
+			recal_calibration();
 
 		}
 		if (cal_debug.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_debug, cv::Scalar(0, 255, 0), 2);
-			std::cout << "Vector3 pos_offset(" << pos_offset << "), pos_scale(" << pos_scale << ");" << std::endl;
+			std::cout << "Vector3 pos_scale(" << pos_scale << ");" << std::endl;
 			std::cout << "Vector3 rawpos_0(" << rawpos_0 << "), rawpos_x(" << rawpos_x << "), rawpos_y(" << rawpos_y << "), rawpos_z(" << rawpos_z << ");" << std::endl;
 			std::cout << "float x_angle = " << x_angle << ";" << std::endl;
 		}
@@ -195,17 +198,30 @@ void setupControlPanel()
 
 int main()
 {
+	Camera* camera = nullptr;
+	while (!camera)
+	{
+		CameraManager::X().WaitForInitialization();
+		CameraList list;
+		/*while (list.Count() < 1)
+		{
+			list.Refresh();
+			std::cout << "Camera not found" << std::endl;
+
+		}*/
+		for (int i = 0; i < list.Count(); i++)
+		{
+			std::cout << ("Device %d: %s", i, list[i].Name()) << std::endl;
+		}
+		camera = CameraManager::X().GetCamera();
+		if (!camera)
+		{
+			std::cout << "Failure" << std::endl;
+		}
+	}
 	std::cout << "Main Program Starting" << std::endl;
 
 	CameraLibrary_EnableDevelopment();
-	CameraManager::X().WaitForInitialization();
-
-	Camera* camera = CameraManager::X().GetCamera();
-	if (!camera)
-	{
-		std::cout << "Camera is invalid, using debug video" << std::endl;
-		use_camera = false;
-	}
 
 	if (use_camera)
 	{
@@ -213,7 +229,7 @@ int main()
 		camera->SetExposure(50);
 		camera->SetThreshold(200);
 		camera->SetIntensity(15);
-		camera->SetFrameRate(120);
+		camera->SetFrameRate(60);
 		camera->Start();
 		std::cout << "Camera initialized, Starting loop" << std::endl;
 	}
@@ -231,7 +247,7 @@ int main()
 
 	sockaddr_in server;
 	server.sin_family = AF_INET;
-	server.sin_port = htons(54000); 
+	server.sin_port = htons(54322); 
 	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr); 
 	SOCKET out = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -240,7 +256,7 @@ int main()
 
 	while (true)
 	{
-		char key = (char)cv::waitKey(10);
+		char key = (char)cv::waitKey(1);
 		if (key == 27) break;
 		tick = cv::getTickCount();
 		if (use_camera)
@@ -279,15 +295,16 @@ int main()
 		if (contours.size() > 0)
 		{
 			minEnclosingCircle(contours[max_int], center, radius);
-			pos_raw = Vector3(center.x, center.y, 10000 / radius);
-			pos_centered = pos_raw - pos_offset;
-			pos_rotated = pos_centered.RotateX(-x_angle);
+			pos_screen = Vector3(center.x - img.size().width / 2, center.y - img.size().height / 2, -1000);
+			pos_raw = pos_screen * (10 / radius);
+			pos_centered = pos_raw - rawpos_0;
+			pos_rotated = pos_centered.RotateX(0);
 			pos_out = pos_rotated * pos_scale;
 
-			pos_out = pos_out.MagnitudeSquared() < 100000000 ? pos_out : Vector3(0, 0, 0);
+			pos_out = pos_out.MagnitudeSquared() < 300 * 300? pos_out : Vector3(0, 0, 0);
 		}
 
-		int divider = 1;
+		int divider = 2;
 		resize(img, img, cv::Size(round(img.cols / divider), round(img.rows / divider)), cv::INTER_NEAREST);
 		resize(img_raw, img_raw, cv::Size(round(img_raw.cols / divider), round(img_raw.rows / divider)), cv::INTER_NEAREST);
 		if (use_camera)
@@ -299,9 +316,14 @@ int main()
 			img_out = img_raw;
 		}
 
-		putText(img_out, std::to_string(pos_out.x), cv::Point2f(10, 50), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(200, 255, 0), 1, cv::LINE_8, false);
-		putText(img_out, std::to_string(pos_out.y), cv::Point2f(10, 70), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(200, 255, 0), 1, cv::LINE_8, false);
-		putText(img_out, std::to_string(pos_out.z), cv::Point2f(10, 90), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(200, 255, 0), 1, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_out.x), cv::Point2f(10,  50), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_out.y), cv::Point2f(10,  90), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_out.z), cv::Point2f(10, 130), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_raw.x), cv::Point2f(10, 300), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_raw.y), cv::Point2f(10, 340), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(pos_raw.z), cv::Point2f(10, 380), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		putText(img_out, std::to_string(radius), cv::Point2f(10, 450), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
+		
 		circle(img_out, center / divider, radius / divider, cv::Scalar(0, 255, 0), 1);
 
 		imshow("Input", img);
@@ -309,8 +331,14 @@ int main()
 
 		if (online)
 		{
-			pos_string = "POS_DATA " + std::to_string(pos_out.x) + " " + std::to_string(pos_out.y) + " " + std::to_string(pos_out.z) + " -----------------------------";
-			int sendOk = sendto(out, pos_string.c_str(), pos_string.size() + 1, 0, (sockaddr*)&server, sizeof(server));
+			pos_string = std::to_string(pos_out.x) + " " + std::to_string(pos_out.y) + " " + std::to_string(pos_out.z) + " -----------------------------";
+			int len = tosc_writeMessage(
+				buffer, sizeof(buffer),
+				"/ping",
+				"s",
+				pos_string.c_str()
+			);
+			int sendOk = sendto(out, buffer, len, 0, (sockaddr*)&server, sizeof(server));
 			if (sendOk == SOCKET_ERROR)
 			{
 				std::cout << "Error in sending position data! " << WSAGetLastError() << std::endl;
@@ -325,6 +353,5 @@ int main()
 	}
 	closesocket(out);
 	WSACleanup();
-	CameraManager::X().Shutdown();
 	return 0;
 }
