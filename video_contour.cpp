@@ -73,15 +73,15 @@ std::ostream& operator<<(std::ostream& stream, const Vector3& other)
 }
 
 Vector3 pos_screen, pos_raw, pos_centered, pos_rotated, pos_out;
-Vector3 pos_scale(0.820362, -0.812471, 1.04461);
-Vector3 rawpos_0(-11.1041, 89.4835, -272.449), rawpos_x(110.793, 87.5331, -264.538), rawpos_y(-24.691, -33.5978, -273.05), rawpos_z(-6.04241, 89.1021, -176.719);
-float x_angle = -0.00398436;
+Vector3 pos_scale(0.814971, -0.824212, 1.10687);
+Vector3 rawpos_0(-14.0451, -16.1581, -248.586), rawpos_x(47.3068, -15.5903, -258.149), rawpos_y(-12.9716, -76.8221, -251.876), rawpos_z(-6.27958, 16.9259, -121.2);
+float x_angle = 0.00865191;
 
 
 int lum_thresh_value = 90;
 const int lum_thresh_max = 255;
-int cal_value = 100;
-const int cal_max = 3000;
+int cal_value = 50;
+const int cal_max = 300;
 int crop_value = 0;
 const int crop_max = 1000;
 
@@ -104,8 +104,8 @@ cv::Mat1b img;
 cv::Mat3b img_out;
 std::vector<std::vector<cv::Point>> contours;
 std::vector<cv::Vec4i> hierarchy;
-const int cameraWidth = 2048;
-const int cameraHeight = 1088;
+const int cameraWidth = 1280;
+const int cameraHeight = 1024;
 char imageBuffer[cameraWidth * cameraHeight];
 char buffer[1024];
 
@@ -134,20 +134,20 @@ void mouseClickFunc(int event, int x, int y, int flags, void* userdata)
 		{
 			rectangle(canvas, cal_x, cv::Scalar(0, 255, 0), 2);
 			rawpos_x = pos_raw;
-			recal_calibration();
+			pos_scale.x = cal_value / (rawpos_x - rawpos_0).x;
 		}
 		if (cal_y.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_y, cv::Scalar(0, 255, 0), 2);
 			rawpos_y = pos_raw;
-			recal_calibration();
+			pos_scale.y = cal_value / (rawpos_y - rawpos_0).y;
 			
 		}
 		if (cal_z.contains(cv::Point(x, y)))
 		{
 			rectangle(canvas, cal_z, cv::Scalar(0, 255, 0), 2);
 			rawpos_z = pos_raw;
-			recal_calibration();
+			pos_scale.z = cal_value / (rawpos_z - rawpos_0).z;
 
 		}
 		if (cal_debug.contains(cv::Point(x, y)))
@@ -225,11 +225,11 @@ int main()
 
 	if (use_camera)
 	{
-		camera->SetVideoType(Core::MJPEGMode);
+		camera->SetVideoType(Core::SegmentMode);
 		camera->SetExposure(50);
 		camera->SetThreshold(200);
 		camera->SetIntensity(15);
-		camera->SetFrameRate(60);
+		camera->SetFrameRate(120);
 		camera->Start();
 		std::cout << "Camera initialized, Starting loop" << std::endl;
 	}
@@ -303,7 +303,7 @@ int main()
 
 			pos_out = pos_out.MagnitudeSquared() < 300 * 300? pos_out : Vector3(0, 0, 0);
 		}
-
+		
 		int divider = 2;
 		resize(img, img, cv::Size(round(img.cols / divider), round(img.rows / divider)), cv::INTER_NEAREST);
 		resize(img_raw, img_raw, cv::Size(round(img_raw.cols / divider), round(img_raw.rows / divider)), cv::INTER_NEAREST);
@@ -315,7 +315,7 @@ int main()
 		{
 			img_out = img_raw;
 		}
-
+		
 		putText(img_out, std::to_string(pos_out.x), cv::Point2f(10,  50), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
 		putText(img_out, std::to_string(pos_out.y), cv::Point2f(10,  90), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
 		putText(img_out, std::to_string(pos_out.z), cv::Point2f(10, 130), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(200, 255, 0), 2, cv::LINE_8, false);
@@ -328,20 +328,32 @@ int main()
 
 		imshow("Input", img);
 		imshow("Output", img_out);
+		
+		bool OSC = false;
 
 		if (online)
 		{
 			pos_string = std::to_string(pos_out.x) + " " + std::to_string(pos_out.y) + " " + std::to_string(pos_out.z) + " -----------------------------";
-			int len = tosc_writeMessage(
-				buffer, sizeof(buffer),
-				"/ping",
-				"s",
-				pos_string.c_str()
-			);
-			int sendOk = sendto(out, buffer, len, 0, (sockaddr*)&server, sizeof(server));
-			if (sendOk == SOCKET_ERROR)
+			if (OSC)
 			{
-				std::cout << "Error in sending position data! " << WSAGetLastError() << std::endl;
+				int len = tosc_writeMessage(
+					buffer, sizeof(buffer),
+					"/ping",
+					"s",
+					pos_string.c_str());
+				int sendOk = sendto(out, buffer, len, 0, (sockaddr*)&server, sizeof(server));
+				if (sendOk == SOCKET_ERROR)
+				{
+					std::cout << "Error in sending position data! " << WSAGetLastError() << std::endl;
+				}
+			}
+			else
+			{
+				int sendOk = sendto(out, pos_string.c_str(), pos_string.size() + 1, 0, (sockaddr*)&server, sizeof(server));
+				if (sendOk == SOCKET_ERROR)
+				{
+					std::cout << "Error in sending position data! " << WSAGetLastError() << std::endl;
+				}
 			}
 		}
 		//cout << (getTickCount() - tick) / getTickFrequency()<< endl;
